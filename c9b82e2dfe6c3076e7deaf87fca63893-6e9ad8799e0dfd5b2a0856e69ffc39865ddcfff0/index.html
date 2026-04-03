@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Static</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f6fa;
+    }
+
+    .row {
+      margin-right: -8px;
+      margin-left: -8px;
+    }
+
+    [class^='col'] {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+
+    a:hover,
+    a:visited,
+    a:active,
+    a:focus {
+      text-decoration: none;
+    }
+
+    .thumbnail:hover {
+      cursor: pointer;
+      background-color: darkgray;
+    }
+
+    @media (max-width: 970px) {
+      .navbar {
+        display: block;
+      }
+
+      .list-group {
+        display: none;
+      }
+    }
+
+    @media (min-width: 970px) {
+      .navbar {
+        display: none;
+      }
+
+      .list-group {
+        display: block;
+      }
+    }
+
+    .nav .nav {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-default" v-show="loading">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li v-for="item in data" :key="item.slug">
+              <a :href="'#'+item.slug">
+                <i v-if="item.icon" :class="item.icon"></i>
+                <img v-if-else="item.src" :src="item.src" style="width: 48px; height: 48px;border-radius: 50%;" />
+                {{item.label}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2" style="position: fixed;background-color: #fff;min-height: 100vh;" v-show="loading">
+          <div class="list-group" style="margin-top: 50px;height: calc(100vh - 70px); overflow: auto;">
+            <a v-for="item in data" :key="item.slug" :href="'#'+item.slug" class="list-group-item">
+              <i :class="item.icon"></i>
+              {{item.label}}
+            </a>
+          </div>
+        </div>
+        <div class="col-md-10 col-md-offset-2">
+          <div class="jumbotron text-center" style="margin-top: 10px; padding: 25px 0;">
+            <h1>Static Nav</h1>
+          </div>
+          <div class="row" v-for="menu in data" :key="menu.slug" :id="menu.slug" v-show="loading">
+            <div class="col-md-12 page-header">
+              <h3>
+                <i :class="menu.icon"></i>
+                <strong>{{menu.label}}</strong>
+              </h3>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6" v-for="(item,index) in menu.children" :key="index">
+              <a :href="item.href" target="_blank" :title="item.description">
+                <div class="thumbnail" style="padding: 0;">
+                  <div class="caption" style="padding: 8px 4px;">
+                    <div class="media">
+                      <div class="media-left">
+                        <i v-if="item.icon" :class="item.icon"></i>
+                        <img v-else-if="item.src" :src="item.src" class="media-object" style="width: 48px; height: 48px;border-radius: 50%;" />
+                        <img v-else class="media-object" data-src="holder.js/64x64" style="width: 48px; height: 48px;border-radius: 50%;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjODQzNzE3OCB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWM4NDM3MTc4Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzMwMDQxNTAzOTA2MjUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true" />
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">{{item.title}}</h4>
+                        {{item.description}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://fastly.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="./data.js"></script>
+  <script>
+    document.onready = function () {
+      new Vue({
+        el: "#app",
+        data: {
+          loading: false,
+          data: data.menu
+        },
+        created() {
+          this.loading = false
+        },
+        mounted() {
+          this.loading = true
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+    "name": "admin/querylist.langnang",
+    "authors": [
+        {
+            "name": "langnang",
+            "email": "langnang.chen@outlook.com"
+        }
+    ],
+    "require": {
+        "jaeger/querylist": "^4.2"
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ff2b190b8e5fffdcfd6a41430f296eb9",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gist.github.com/ff2b190b8e5fffdcfd6a41430f296eb9.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gist.github.com/ff2b190b8e5fffdcfd6a41430f296eb9"
+  },
+  "homepage": "https://gist.github.com/ff2b190b8e5fffdcfd6a41430f296eb9",
+  "description": "用js给老婆每天发情话：https://juejin.cn/post/6904805497845579783"
+}

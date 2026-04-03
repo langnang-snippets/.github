@@ -1,0 +1,21 @@
+.grid-cantainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+	grid-gap: 1.25em;
+	grid-auto-flow: row dense;
+	grid-auto-rows: 20px;
+}
+.grid-item {
+	width: 100%;
+	background: #222;
+	color: #ddd;
+}
+.grid-cantainer .grid-item:nth-of-type(3n + 1) {
+	grid-row: auto / span 5;
+}
+.grid-cantainer .grid-item:nth-of-type(3n + 2) {
+	grid-row: auto / span 6;
+}
+.grid-cantainer .grid-item:nth-of-type(3n + 3) {
+	grid-row: auto / span 8;
+}

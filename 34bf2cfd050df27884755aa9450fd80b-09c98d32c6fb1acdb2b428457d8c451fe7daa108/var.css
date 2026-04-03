@@ -1,0 +1,15 @@
+:root{
+  /* 颜色类 */
+  --default: #fff;
+  --primary: #409eff;
+  --success: #67c23a;
+  --info: #909399;
+  --warning: #e6a23c;
+  --danger: #f56c6c;
+  /* 尺寸类 */
+  --xs: 10px;
+  --sm: 12px;
+  --md: 16px;
+  --dx: 20px;
+  --xl: 24px;
+}

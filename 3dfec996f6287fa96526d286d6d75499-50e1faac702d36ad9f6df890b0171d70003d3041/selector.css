@@ -1,0 +1,40 @@
+// 基本选择器
+*{}
+element{}
+#id{}
+.class{}
+
+// 组合选择器
+E,F{}
+E F{}
+E>F{}
+E+F{}
+E~F{}
+
+// 属性选择器
+E[att]{}
+E[att=val]{}
+E[att~=val]{}
+E[att|=val]{}
+E[att^=val]{}
+E[att$=val]{}
+E[att*=val]{}
+
+// 伪类
+E:forst-child{}
+E:link{}
+E:visited{}
+E:active{}
+E:hover{}
+E:focus{}
+E:lang{}
+E:enabled{}
+E:disabled{}
+E:checked{}
+E::selection{}
+
+// 伪元素
+E:first-line{}
+E:first-letter{}
+E:before{}
+E:after{}
